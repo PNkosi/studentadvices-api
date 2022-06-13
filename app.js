@@ -28,6 +28,15 @@ app.get("/contact", (req, res) => {
     res.render("contact", { content: contactContent })
 })
 
+app.get("/compose", (req, res) => {
+    res.render("compose");
+})
+
+app.post("/", (req, res) => {
+    const postTitle = req.body.postTitle;
+    console.log(postTitle);
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}...`);
 });
