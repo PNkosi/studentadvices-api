@@ -71,28 +71,30 @@ app.post("/", (req, res) => {
 
     post.save((err, post) => {
         if (err) console.log(err)
-        else console.log(`${post.postTitle} saved successfully!`)
+        else { 
+            console.log(`${post.postTitle} saved successfully!`)
+            res.redirect("/")
+        }
     })
-
-    Post.find({}, (err, posts) => {
-        console.log(posts)
-    })
-    res.redirect("/")
 })
 
-Handling GET request for each single post
-app.get("/posts/:postTitle", (req, res) => {
-    const requestedTitle = _.lowerCase(req.params.postTitle);
-    
-    posts.forEach(post => {
-        const storedTitle = _.lowerCase(post.title);
+// Handling GET request for each single post
+app.get("/posts/:postId", (req, res) => {
+    const requestedPostId = _.lowerCase(req.params.postId);
 
-        if (storedTitle === requestedTitle) {
-            res.render("post", { title: post.title, content: post.body })
-        }
-    });
+    Post.find({_id: requestedPostId}, function (err, post) {
+        console.log(post.postTitle)
+        res.render("post", {
+            title: post.postTitle,
+            content: post.postBody
+        })
+    })
 })
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+    
+    
