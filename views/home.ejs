@@ -5,9 +5,9 @@
 
 <% posts.forEach(post => { %>
     <div class="post">
-        <h2 class="title"><%=post.postTitle%></h2>
+        <h2 class="title"><%=post.title%></h2>
         <p class="post-description">
-            <%=post.postBody.substring(0, 100) + " ..."%>
+            <%=post.content.substring(0, 100) + " ..."%>
             <a href="/posts/<%=post._id%>">Read More</a>
         </p>
     </div>

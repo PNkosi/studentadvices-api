@@ -23,9 +23,6 @@ app.use(express.static("public"));
 // Connecting to the database
 mongoose.connect('mongodb://localhost:27017/blogDB');
 
-// Getting an instance of the current connection
-const db = mongoose.connection
-
 
 // Building Schema into a model
 const Post = mongoose.model("Post", PostSchema)
@@ -33,20 +30,44 @@ const Post = mongoose.model("Post", PostSchema)
 
 app.get("/", (req, res) => {
     Post.find({}, (err, posts) => {
-        if (err) console.log(err)
-        else {
-            if (posts.length === 0) {
-                res.redirect("/compose")
-            }
-            else {
-                res.render("home", {
-                    content: homeStartingContent,
-                    posts: posts
-                })
-            }
+        res.render("home", {
+            content: homeStartingContent,
+            posts: posts
+        })
+    })
+})
+
+app.get("/compose", (req, res) => {
+    res.render("compose");
+})
+
+app.post("/compose", (req, res) => {
+    const post = new Post({
+        title: req.body.postTitle,
+        content: req.body.postBody
+    })
+
+    post.save((err) => {
+        if (!err) { 
+            console.log(`post saved successfully!`)
+            res.redirect("/")
         }
     })
 })
+
+// Handling GET request for each single post
+app.get("/posts/:postId", (req, res) => {
+    const requestedPostId = req.params.postId;
+
+    Post.findOne({_id: requestedPostId}, function (err, post) {
+        res.render("post", {
+            title: post.title,
+            content: post.content
+        })
+    })
+})
+
+
 
 app.get("/about", (req, res) => {
     res.render("about", { content: aboutContent })
@@ -56,40 +77,6 @@ app.get("/contact", (req, res) => {
     res.render("contact", { content: contactContent })
 })
 
-app.get("/compose", (req, res) => {
-    res.render("compose");
-})
-
-app.post("/", (req, res) => {
-    const postTitle = req.body.postTitle;
-    const postBody = req.body.postBody;
-
-    const post = new Post({
-        postTitle,
-        postBody
-    })
-
-    post.save((err, post) => {
-        if (err) console.log(err)
-        else { 
-            console.log(`${post.postTitle} saved successfully!`)
-            res.redirect("/")
-        }
-    })
-})
-
-// Handling GET request for each single post
-app.get("/posts/:postId", (req, res) => {
-    const requestedPostId = _.lowerCase(req.params.postId);
-
-    Post.find({_id: requestedPostId}, function (err, post) {
-        console.log(post.postTitle)
-        res.render("post", {
-            title: post.postTitle,
-            content: post.postBody
-        })
-    })
-})
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
