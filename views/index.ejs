@@ -1,0 +1,65 @@
+<%- include('partials/header') -%>
+
+<main class="main container">
+    <h1 class="page-title">Student Advice JSON API</h1>
+    <h2 class="section-title">BASE URL</h2>
+    <a href="http://localhost:3000/advice">http://localhost:3000/advice</a>
+
+    <section class="in-page-navigation">
+        <div class="endpoints page-navigation-section">
+            <h2 class="section-title">ENDPOINTS</h2>
+            <a href="#allAdvices">All Advices</a>
+            <a href="#randomAdice">Random advice</a>
+            <a href="#adviceByID">Advice by ID</a>
+            <a href="#searchInstitution">Search by institution</a>
+            <a href="#addAdvice">Post advice</a>
+        </div>
+
+        <div class="objects page-navigation-section">
+            <h2 class="section-title">OBJECTS</h2>
+            <a href="#adviceObject">Advice Object</a>
+            <a href="#errorObject">Error Object</a>
+        </div>
+    </section>
+
+    <section class="page-section" id="randomAdvice">
+        <h3>Random advice</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="http://localhost:3000/advice">http://localhost:3000/advice</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>Returns an <a href="#adviceObject">advice object</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="page-section" id="adviceByID">
+        <h3>Advice by ID</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="http://localhost:3000/advice/1">http://localhost:3000/advice/{id}</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>If an advice with the specified {id} is found, an <a href="#adviceObject">advice object</a> is returned
+                    <br> If no advice with the specified {id} can be found, an <a href="#errorObject">error object</a>, containing a message, is returned instead
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>
+
+<%- include('partials/footer') -%>
+

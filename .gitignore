@@ -1,3 +1,8 @@
 node_modules
+.env
 
+# Developement tools to ignore
+mongoDB_playground
 .prettierignore
+*.rest
+*.mongodb
