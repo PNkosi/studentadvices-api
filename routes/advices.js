@@ -7,6 +7,11 @@ const getAdvice = require('../middleware/getAdvice')
 router.get('/', async (req, res) => {
   try {
     const numberOfDocuments = await StudentAdvice.countDocuments()
+
+    //Checking if there are any advices
+    if (numberOfDocuments < 1) {
+      return res.status(200).json({ message: 'There are no advices' })
+    }
     const randomId = Math.floor(Math.random() * numberOfDocuments + 1)
 
     const advice = await StudentAdvice.findById(randomId)
@@ -24,14 +29,14 @@ router.get('/:id', getAdvice, async (req, res) => {
 // Creating one quote
 router.post('/', async (req, res) => {
   let name = req.body.name
-  let institution = req.body.institution
+  let institution = req.body.institution.toLowerCase()
   const advice = req.body.advice
 
   if (name === '' || name === undefined || name === null) {
-    name = 'Anonymous'
+    name = 'anonymous'
   }
   if (institution === '' || institution === undefined || institution === null) {
-    institution = 'Anonymous'
+    institution = 'anonymous'
   }
 
   try {

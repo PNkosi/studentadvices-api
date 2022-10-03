@@ -1,0 +1,76 @@
+.share-page-main {
+  background: url('../images/bg_img.jpg') center/cover no-repeat;
+  height: 100vh;
+}
+
+.form {
+  background-color: #002a41af;
+  padding: 2rem;
+  width: 50%;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+}
+
+.form .page-title {
+  color: lavender;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+input {
+  height: 40px;
+  outline: #0084c5;
+  padding: 0 10px;
+  font-size: 1rem;
+}
+
+textarea {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+}
+
+label {
+  color: lavender;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+#char-limit {
+  float: right;
+}
+
+#advice {
+  height: 100px;
+  padding: 10px;
+}
+
+.max-fine {
+  color: lavender;
+}
+.max-warning {
+  color: orange;
+}
+.max-reached {
+  color: orangered;
+}
+
+button {
+  background-color: #0084c5;
+  color: lavender;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+}

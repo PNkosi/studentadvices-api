@@ -1,0 +1,46 @@
+.header {
+  border-bottom: 1px solid gray;
+  background-color: lavender;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15vh;
+}
+
+@media (max-width: 468px) {
+  .header-container {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.logo {
+  font-weight: 900;
+  color: #003a59;
+  text-transform: uppercase;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+}
+
+.navbar__link {
+  padding: 0.5rem 1rem;
+  background-color: #003a59;
+  color: lavender;
+  transition: all 0.25s ease-in-out;
+}
+
+.navbar__link:hover {
+  background-color: #6051ff;
+  color: lavender;
+}

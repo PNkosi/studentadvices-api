@@ -3,7 +3,6 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const _ = require('lodash')
 const cors = require('cors')
 const port = process.env.PORT || 3000
 
@@ -23,12 +22,23 @@ const dbconn = mongoose.connection
 dbconn.on('error', (error) => console.error(error))
 dbconn.once('open', () => console.log('Connected to database'))
 
-// Quotes router
+// routers
+const searchAdviceRouter = require('./routes/searchAdvices')
 const adviceRouter = require('./routes/advices')
+app.use('/advice/search', searchAdviceRouter)
 app.use('/advice', adviceRouter)
 
+// Rendering views
 app.get('/', (req, res) => {
   res.render('index')
+})
+
+app.get('/api', (req, res) => {
+  res.render('api')
+})
+
+app.get('/playground', (req, res) => {
+  res.render('playground')
 })
 
 app.get('/shareAdvice', (req, res) => {

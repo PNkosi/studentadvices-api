@@ -1,0 +1,43 @@
+@import 'config';
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: lavender;
+  color: #003a59;
+}
+
+a {
+  text-decoration: none;
+  color: #0084c5;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+
+a:hover {
+  color: #6051ff;
+}
+
+section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: #7a78a1;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.main {
+  margin-top: 15vh;
+}
+
+@import 'header';
+
+@import 'landing-page';
+@import 'api-page';
+@import 'share-advice-page';
+@import 'footer';

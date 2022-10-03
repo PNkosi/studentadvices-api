@@ -1,0 +1,114 @@
+<%- include('partials/header') -%>
+
+<main class="main container">
+    <h1 class="page-title">Student Advice JSON API</h1>
+    <h2 class="section-title">BASE URL</h2>
+    <a href="http://localhost:3000/advice">http://localhost:3000/advice</a>
+
+    <section class="in-page-navigation">
+        <div class="endpoints page-navigation-section">
+            <h2 class="section-title">ENDPOINTS</h2>
+            <a href="#randomAdice">Random advice</a>
+            <a href="#adviceByID">Advice by ID</a>
+            <a href="#searchInstitution">Search by institution</a>
+            <a href="#addAdvice">Post advice</a>
+        </div>
+
+        <div class="objects page-navigation-section">
+            <h2 class="section-title">OBJECTS</h2>
+            <a href="#adviceObject">Advice Object</a>
+            <a href="#errorObject">Error Object</a>
+        </div>
+    </section>
+
+    <section class="page-section" id="randomAdvice">
+        <h3>Random advice</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="http://localhost:3000/advice">http://localhost:3000/advice</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>Returns an <a href="#adviceObject">advice object</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="page-section" id="adviceByID">
+        <h3>Advice by ID</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="http://localhost:3000/advice/1">http://localhost:3000/advice/{id}</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>If an advice with the specified {id} is found, an <a href="#adviceObject">advice object</a> is returned
+                    <br> If no advice with the specified {id} can be found, an <a href="#errorObject">error object</a>, containing a message, is returned instead
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section class="page-section" id="searchInstitution">
+        <h3>Search by institution</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>GET</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="http://localhost:3000/advice/search?institution=ump">http://localhost:3000/advice/search?institution={institutionName}</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>A <a href="#searchObject">search object</a> matching the institution search term is returned. <br>
+                The search object contains the following properties: <br>
+                    <ul>
+                        <li><b>institution name</b>: The institution searched for</li>
+                        <li><b>count</b>: the number of advices from the specified institution</li>
+                        <li><b>advices</b>: an array containing the authout of the advice and the advice itself</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="page-section" id="#addAdvice">
+        <h3>Post advice</h3>
+        <table>
+            <tr>
+                <td>HTTP Method</td>
+                <td>POST</td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td><a href="#addAdvice">http://localhost:3000/advice</a></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>
+                    Add an advice by making a POST request to the server.
+                    <form action="/advice" method="POST" id="post-form">
+                        <input type="text" name="name" placeholder="Enter your name...">
+                        <input type="text" name="institution" placeholder="Enter your institution's name...">
+                        <input type="text" name="advice" required placeholder="Enter your advice...">
+                        <button type="submit" id="post-btn">POST</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>
+
+<%- include('partials/footer') -%>
+
